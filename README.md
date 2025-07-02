@@ -61,6 +61,12 @@ Ready for production deployment on Vercel or any Next.js hosting platform.
 - **CSS Validation**: Proper Tailwind directive support in editor
 - **Error Boundaries**: Comprehensive error handling prevents deployment crashes
 
+### Dynamic Rendering Fix
+- **Cookie Authentication**: All auth-protected pages use `export const dynamic = 'force-dynamic'`
+- **Static Generation**: Prevents "Dynamic server usage" errors during build
+- **Server Rendering**: Pages with authentication properly render on-demand
+- **Build Success**: Clean builds with exit code 0 and no cookie-related errors
+
 ## 📦 Installation
 
 1. **Clone the repository**

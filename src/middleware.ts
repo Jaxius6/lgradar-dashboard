@@ -52,7 +52,9 @@ export async function middleware(request: NextRequest) {
   }
 
   // Check if user is trying to access dashboard without being authenticated
-  if (request.nextUrl.pathname.startsWith('/dashboard') && !user) {
+  // Allow demo mode
+  const isDemo = request.nextUrl.searchParams.get('demo') === 'true'
+  if (request.nextUrl.pathname.startsWith('/dashboard') && !user && !isDemo) {
     // Redirect to login page
     const url = request.nextUrl.clone()
     url.pathname = '/login'

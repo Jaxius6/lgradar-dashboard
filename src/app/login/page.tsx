@@ -63,6 +63,11 @@ export default function LoginPage() {
     }
   }
 
+  const handleDemoLogin = () => {
+    // For demo purposes, redirect directly to dashboard
+    router.push("/dashboard?demo=true")
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <div className="w-full max-w-md">
@@ -153,6 +158,26 @@ export default function LoginPage() {
             >
               <Chrome className="mr-2 h-4 w-4" />
               Google
+            </Button>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <Separator className="w-full" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Or try demo
+                </span>
+              </div>
+            </div>
+
+            <Button
+              variant="secondary"
+              className="w-full"
+              onClick={handleDemoLogin}
+              disabled={loading}
+            >
+              View Demo Dashboard
             </Button>
 
             <div className="text-center text-sm text-muted-foreground">

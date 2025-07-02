@@ -17,12 +17,21 @@ export function createClient(): SupabaseClient | MockSupabaseClient {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   
   if (!supabaseUrl || !supabaseAnonKey) {
-    // Return a mock client for build time when env vars are not available
+    console.warn('Supabase environment variables not configured. Using mock client.')
+    console.warn('Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in your environment variables.')
+    
+    // Return a mock client for development when env vars are not available
     return {
       auth: {
-        signInWithPassword: () => Promise.resolve({ error: new Error('Supabase not configured') }),
-        signInWithOAuth: () => Promise.resolve({ error: new Error('Supabase not configured') }),
-        signUp: () => Promise.resolve({ error: new Error('Supabase not configured') }),
+        signInWithPassword: () => Promise.resolve({
+          error: new Error('Authentication is not configured. Please set up Supabase environment variables.')
+        }),
+        signInWithOAuth: () => Promise.resolve({
+          error: new Error('Authentication is not configured. Please set up Supabase environment variables.')
+        }),
+        signUp: () => Promise.resolve({
+          error: new Error('Authentication is not configured. Please set up Supabase environment variables.')
+        }),
         signOut: () => Promise.resolve({ error: null }),
         getUser: () => Promise.resolve({ data: { user: null }, error: null }),
         onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })

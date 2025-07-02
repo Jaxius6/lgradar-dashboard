@@ -1,5 +1,4 @@
-import { createClient } from "@/lib/supabase-server"
-import { redirect } from "next/navigation"
+import { getAuthenticatedUser } from "@/lib/auth-helper"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -18,25 +17,12 @@ import {
 // Force dynamic rendering since we use cookies for auth
 export const dynamic = 'force-dynamic'
 
-export default async function AlertsPage() {
-  let user = null
-  
-  try {
-    const supabase = await createClient()
-    
-    const {
-      data: { user: authUser },
-    } = await supabase.auth.getUser()
-    
-    user = authUser
-  } catch (error) {
-    // If auth fails, treat as not authenticated
-    console.warn('Auth check failed:', error)
-  }
-
-  if (!user) {
-    redirect("/login")
-  }
+export default async function AlertsPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ demo?: string }>
+}) {
+  const { user } = await getAuthenticatedUser(searchParams)
 
   // Mock alert data
   const alerts = [

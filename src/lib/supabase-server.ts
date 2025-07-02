@@ -17,6 +17,8 @@ export async function createClient(): Promise<SupabaseClient | MockSupabaseServe
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   if (!supabaseUrl || !supabaseAnonKey) {
+    console.warn('Supabase environment variables not configured on server. Using mock client.')
+    
     // Return a mock client for server-side when env vars are not available
     return {
       auth: {

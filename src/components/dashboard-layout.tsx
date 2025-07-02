@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { createClient } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
@@ -82,7 +82,12 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children, user }: DashboardLayoutProps) {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  
+  // Check if we're in demo mode
+  const isDemo = searchParams.get('demo') === 'true'
+  const demoParam = isDemo ? '?demo=true' : ''
 
   const handleSignOut = async () => {
     const supabase = createClient()
@@ -94,7 +99,7 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
     <div className="flex h-full flex-col">
       {/* Logo */}
       <div className="flex h-16 items-center border-b px-6">
-        <Link href="/dashboard" className="flex items-center space-x-2">
+        <Link href={`/dashboard${demoParam}`} className="flex items-center space-x-2">
           <div className="h-8 w-8 rounded-lg bg-green-600 flex items-center justify-center">
             <span className="text-white font-bold text-sm">LG</span>
           </div>
@@ -109,7 +114,7 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
           return (
             <div key={item.name}>
               <Link
-                href={item.href}
+                href={`${item.href}${demoParam}`}
                 className={cn(
                   "flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                   isActive
@@ -125,7 +130,7 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
                   {item.children.map((child) => (
                     <Link
                       key={child.name}
-                      href={child.href}
+                      href={`${child.href}${demoParam}`}
                       className={cn(
                         "block rounded-md px-3 py-1 text-xs transition-colors",
                         pathname === child.href
@@ -248,7 +253,7 @@ export function DashboardLayout({ children, user }: DashboardLayoutProps) {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href="/dashboard/account">
+                <Link href={`/dashboard/account${demoParam}`}>
                   <User className="mr-2 h-4 w-4" />
                   Account Settings
                 </Link>
