@@ -5,15 +5,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { 
-  FileText, 
-  Search, 
-  Filter, 
+import {
+  FileText,
+  Search,
+  Filter,
   Download,
   Calendar,
   Eye,
   Clock
 } from "lucide-react"
+
+// Force dynamic rendering since we use cookies for auth
+export const dynamic = 'force-dynamic'
 
 export default async function GazettesPage() {
   let user = null
