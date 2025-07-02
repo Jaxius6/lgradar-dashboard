@@ -40,9 +40,16 @@ export async function middleware(request: NextRequest) {
   // supabase.auth.getUser(). A simple mistake could make it very hard to debug
   // issues with users being randomly logged out.
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  let user = null
+  try {
+    const {
+      data: { user: authUser },
+    } = await supabase.auth.getUser()
+    user = authUser
+  } catch (error) {
+    // If auth fails, treat as no user
+    console.warn('Auth check failed:', error)
+  }
 
   // Check if user is trying to access dashboard without being authenticated
   if (request.nextUrl.pathname.startsWith('/dashboard') && !user) {

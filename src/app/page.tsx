@@ -2,15 +2,20 @@ import { createClient } from "@/lib/supabase-server"
 import { redirect } from "next/navigation"
 
 export default async function HomePage() {
-  const supabase = await createClient()
-  
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  try {
+    const supabase = await createClient()
+    
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-  // If user is authenticated, redirect to dashboard
-  if (user) {
-    redirect("/dashboard")
+    // If user is authenticated, redirect to dashboard
+    if (user) {
+      redirect("/dashboard")
+    }
+  } catch (error) {
+    // If auth fails, treat as not authenticated
+    console.warn('Auth check failed:', error)
   }
 
   // If not authenticated, redirect to login

@@ -16,11 +16,20 @@ import {
 } from "lucide-react"
 
 export default async function GazettesPage() {
-  const supabase = await createClient()
+  let user = null
   
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  try {
+    const supabase = await createClient()
+    
+    const {
+      data: { user: authUser },
+    } = await supabase.auth.getUser()
+    
+    user = authUser
+  } catch (error) {
+    // If auth fails, treat as not authenticated
+    console.warn('Auth check failed:', error)
+  }
 
   if (!user) {
     redirect("/login")
