@@ -7,8 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { Mail, Lock, Chrome, User } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { Mail, Lock, Chrome } from "lucide-react"
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("")
@@ -17,7 +16,6 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
-  const router = useRouter()
   const supabase = createClient()
 
   const handleEmailSignUp = async (e: React.FormEvent) => {
@@ -52,7 +50,7 @@ export default function SignUpPage() {
       } else {
         setMessage("Check your email for the confirmation link!")
       }
-    } catch (err) {
+    } catch {
       setError("An unexpected error occurred")
     } finally {
       setLoading(false)
@@ -75,7 +73,7 @@ export default function SignUpPage() {
         setError(error.message)
         setLoading(false)
       }
-    } catch (err) {
+    } catch {
       setError("An unexpected error occurred")
       setLoading(false)
     }

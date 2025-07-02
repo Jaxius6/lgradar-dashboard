@@ -4,13 +4,12 @@ import { DashboardLayout } from "@/components/dashboard-layout"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { 
-  CreditCard, 
-  Download, 
+import {
+  CreditCard,
+  Download,
   Calendar,
   DollarSign,
   CheckCircle,
-  AlertTriangle,
   Receipt
 } from "lucide-react"
 

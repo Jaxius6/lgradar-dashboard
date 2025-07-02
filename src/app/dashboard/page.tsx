@@ -4,15 +4,13 @@ import { DashboardLayout } from "@/components/dashboard-layout"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { 
-  FileText, 
-  Bell, 
-  History, 
-  CreditCard, 
-  TrendingUp, 
-  Users, 
-  Clock,
-  AlertTriangle
+import {
+  FileText,
+  Bell,
+  History,
+  CreditCard,
+  TrendingUp,
+  Clock
 } from "lucide-react"
 
 export default async function DashboardPage() {
@@ -104,7 +102,7 @@ export default async function DashboardPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-muted-foreground">
-            Welcome back! Here's what's happening with your LG Radar account.
+            Welcome back! Here&apos;s what&apos;s happening with your LG Radar account.
           </p>
         </div>
 

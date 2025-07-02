@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils"
 import { createClient } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
@@ -25,13 +24,8 @@ import {
   CreditCard,
   Settings,
   LogOut,
-  Mail,
   Menu,
-  Search,
   User,
-  Clock,
-  AlertTriangle,
-  Download,
   HelpCircle
 } from "lucide-react"
 
@@ -78,7 +72,12 @@ const navigation = [
 
 interface DashboardLayoutProps {
   children: React.ReactNode
-  user?: any
+  user?: {
+    id: string
+    email?: string
+    avatar_url?: string
+    role?: string
+  }
 }
 
 export function DashboardLayout({ children, user }: DashboardLayoutProps) {

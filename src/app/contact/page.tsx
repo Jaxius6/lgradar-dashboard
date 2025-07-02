@@ -52,7 +52,7 @@ export default function ContactPage() {
               <CardHeader>
                 <CardTitle>Send us a message</CardTitle>
                 <CardDescription>
-                  Fill out the form below and we'll get back to you as soon as possible
+                  Fill out the form below and we&apos;ll get back to you as soon as possible
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -185,7 +185,7 @@ export default function ContactPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-3">
-                    If you're experiencing critical system issues that affect your business operations, 
+                    If you&apos;re experiencing critical system issues that affect your business operations,
                     please contact our emergency support line.
                   </p>
                   <Button variant="destructive" className="w-full">
@@ -218,7 +218,7 @@ export default function ContactPage() {
                   <h4 className="font-semibold mb-2">Can I customize my alert keywords?</h4>
                   <p className="text-sm text-muted-foreground">
                     Yes, you can create custom keyword alerts and modify them at any time 
-                    through your dashboard's Alerts section.
+                    through your dashboard&apos;s Alerts section.
                   </p>
                 </div>
                 <div>
