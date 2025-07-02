@@ -28,10 +28,11 @@ export const metadata: Metadata = {
     title: "LG Radar Dashboard",
     description: "Government gazette monitoring and alert system for Western Australia",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
+}
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({
